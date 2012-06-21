@@ -29,14 +29,20 @@ end
 
 # Get spreadsheet
 # https://docs.google.com/a/devbootcamp.com/spreadsheet/ccc?key=0AtsLecjMWFCbdEJwNEpRcW5TMU53QV9GX1pPMllfYUE
-ss_key = "0AtsLecjMWFCbdEJwNEpRcW5TMU53QV9GX1pPMllfYUE"
-ss = session.spreadsheet_by_key(ss_key).worksheets[0]
-puts ss.spreadsheet.worksheets_feed_url
-puts ss.spreadsheet.human_url
-puts ss.spreadsheet.title
+spreadsheet_key = "0AtsLecjMWFCbdEJwNEpRcW5TMU53QV9GX1pPMllfYUE"
+summer_cohorts = session.spreadsheet_by_key(spreadsheet_key).worksheets[0]
+#puts summer_cohorts.spreadsheet.worksheets_feed_url
+puts summer_cohorts.spreadsheet.human_url
+puts summer_cohorts.spreadsheet.title
+
+
+
+for row in 1..summer_cohorts.num_rows
+  p summer_cohorts.list[row]['Twitter']
+end
 
 # Export to a file in formats like xls, csv, ods, tsv or html
-file_path = File.join(local_path, 'boots.csv')
+#file_path = File.join(local_path, 'boots.csv')
 #ss.spreadsheet.export_as_file(file_path, format = 'csv', worksheet_index = 0)
 
 # Return content of the cell as String either by (row number, column number) or cell name
@@ -49,9 +55,6 @@ file_path = File.join(local_path, 'boots.csv')
 
 # Dump cells by column name
 
-for row in 1..ss.num_rows
-  p ss.list[row]['Twitter']
-end
 
 # Dump all rows
 
